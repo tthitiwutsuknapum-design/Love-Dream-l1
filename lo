@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สำหรับคนพิเศษ 💕</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sriracha&family=Prompt:wght@300;400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Prompt', sans-serif;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 25%, #ff9a9e 50%, #fecfef 75%, #fecfef 100%);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            position: relative;
+            animation: fadeIn 1s ease;
+            z-index: 10;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        /* Page 1: Password */
+        .password-page h1 {
+            color: #d63031;
+            margin-bottom: 20px;
+            font-family: 'Sriracha', cursive;
+            font-size: 32px;
+        }
+        
+        .password-hint {
+            color: #e17055;
+            font-size: 16px;
+            margin-bottom: 20px;
+            font-style: italic;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 10px;
+            border-radius: 15px;
+            display: inline-block;
+        }
+        
+        .password-input {
+            width: 100%;
+            padding: 15px;
+            font-size: 24px;
+            border: 3px solid #fab1a0;
+            border-radius: 15px;
+            text-align: center;
+            letter-spacing: 8px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: #d63031;
+        }
+        
+        .password-input:focus {
+            outline: none;
+            border-color: #e84393;
+            transform: scale(1.02);
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 25px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Prompt', sans-serif;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 107, 157, 0.6);
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            margin-top: 15px;
+            font-size: 18px;
+            display: none;
+            animation: shake 0.5s;
+            font-weight: bold;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+        
+        /* Page 2: Bear Question */
+        .bear-container {
+            margin: 20px 0;
+        }
+        
+        .bear-image {
+            width: 220px;
+            height: 220px;
+            object-fit: contain;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+        
+        .question-text {
+            font-size: 28px;
+            color: #d63031;
+            margin: 20px 0;
+            font-family: 'Sriracha', cursive;
+        }
+        
+        .answer-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .love-btn, .sad-btn {
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Prompt', sans-serif;
+            font-weight: bold;
+        }
+        
+        .love-btn {
+            background: linear-gradient(135deg, #ff6b9d 0%, #ff4757 100%);
+            color: white;
+        }
+        
+        .love-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .sad-btn {
+            background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+            color: white;
+        }
+        
+        .sad-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .response-text {
+            font-size: 24px;
+            color: #e84393;
+            margin-top: 20px;
+            font-weight: 600;
+            min-height: 30px;
+            font-family: 'Sriracha', cursive;
+        }
+        
+        /* Page 3: Music */
+        .music-page h2 {
+            color: #d63031;
+            margin-bottom: 20px;
+            font-family: 'Sriracha', cursive;
+            font-size: 32px;
+        }
+        
+        .music-visual {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .music-visual::before {
+            content: '🎵';
+            font-size: 100px;
+            animation: musicPulse 2s infinite;
+        }
+        
+        @keyframes musicPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        .youtube-btn {
+            background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            border-radius: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0 auto 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .youtube-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .next-btn {
+            background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 25px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        
+        /* Page 4: Letter */
+        .letter-page h2 {
+            color: #d63031;
+            font-family: 'Sriracha', cursive;
+            margin-bottom: 20px;
+            font-size: 32px;
+        }
+        
+        .letter-envelope {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            cursor: pointer;
+            transition: all 0.3s;
+            animation: envelopeFloat 3s ease-in-out infinite;
+        }
+        
+        @keyframes envelopeFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .letter-envelope:hover {
+            transform: scale(1.05);
+        }
+        
+        .envelope-body {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 50px 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        
+        .envelope-text {
+            font-size: 28px;
+            color: #d63031;
+            font-weight: bold;
+            font-family: 'Sriracha', cursive;
+        }
+        
+        .letter-content {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 20px;
+            text-align: left;
+            line-height: 2;
+            color: #2d3436;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            animation: slideUp 0.6s ease;
+            border: 2px solid #fab1a0;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .letter-content p {
+            margin-bottom: 15px;
+            text-indent: 30px;
+            font-size: 16px;
+        }
+        
+        .final-message {
+            margin-top: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 20px;
+            color: #d63031;
+            font-size: 22px;
+            font-family: 'Sriracha', cursive;
+            display: none;
+            animation: fadeIn 1s ease;
+        }
+        
+        .final-message.show {
+            display: block;
+        }
+        
+        /* Floating Elements */
+        .floating-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+            overflow: hidden;
+        }
+        
+        .floating-item {
+            position: absolute;
+            font-size: 24px;
+            animation: floatUp 8s linear infinite;
+            opacity: 0;
+        }
+        
+        @keyframes floatUp {
+            0% { 
+                transform: translateY(100vh) rotate(0deg) scale(0.5); 
+                opacity: 0; 
+            }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { 
+                transform: translateY(-100vh) rotate(360deg) scale(1.2); 
+                opacity: 0; 
+            }
+        }
+        
+        .sparkle {
+            position: absolute;
+            pointer-events: none;
+            animation: sparkle 1s ease-out forwards;
+            z-index: 100;
+        }
+        
+        @keyframes sparkle {
+            0% { transform: scale(0) rotate(0deg); opacity: 1; }
+            100% { transform: scale(2) rotate(180deg); opacity: 0; }
+        }
+        
+        /* Corner Decorations */
+        .corner-decoration {
+            position: fixed;
+            font-size: 60px;
+            opacity: 0.3;
+            z-index: 1;
+            animation: cornerFloat 4s ease-in-out infinite;
+        }
+        
+        .corner-tl { top: 20px; left: 20px; }
+        .corner-tr { top: 20px; right: 20px; animation-delay: 1s; }
+        .corner-bl { bottom: 20px; left: 20px; animation-delay: 2s; }
+        .corner-br { bottom: 20px; right: 20px; animation-delay: 3s; }
+        
+        @keyframes cornerFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px;
+                margin: 10px;
+            }
+            
+            h1, h2 {
+                font-size: 24px !important;
+            }
+            
+            .bear-image {
+                width: 180px;
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Corner Decorations -->
+    <div class="corner-decoration corner-tl">🌹</div>
+    <div class="corner-decoration corner-tr">💖</div>
+    <div class="corner-decoration corner-bl">🌸</div>
+    <div class="corner-decoration corner-br">💕</div>
+    
+    <!-- Floating Container -->
+    <div class="floating-container" id="floatingContainer"></div>
+
+    <!-- Page 1: Password -->
+    <div class="container" id="page1">
+        <div class="password-page">
+            <h1>🔐 ใส่รหัสลับ</h1>
+            <p class="password-hint">💡 คำใบ้: วันแรกที่ครบกัน (6 ตัว)</p>
+            <input type="password" class="password-input" id="passwordInput" placeholder="______" maxlength="6">
+            <br><br>
+            <button class="submit-btn" onclick="checkPassword()">เข้าสู่หัวใจ 💕</button>
+            <p class="error-message" id="errorMsg">เธอไม่รักเค้าหรอคะ? 😢💔</p>
+        </div>
+    </div>
+
+    <!-- Page 2: Bear Question -->
+    <div class="container hidden" id="page2">
+        <div class="question-page">
+            <div class="bear-container">
+                <img src="https://kimi-web-img.moonshot.cn/img/static.vecteezy.com/8abc2aab248d017f620ab780d52eb0ea890ad0f2.jpg" alt="หมีถือหัวใจ" class="bear-image" id="bearImage">
+            </div>
+            <h2 class="question-text">ที่รักรักหนูมั้ยคะ? 🥺💝</h2>
+            <div class="answer-buttons">
+                <button class="love-btn" onclick="answerLove(true)">รักมาก 💕</button>
+                <button class="sad-btn" onclick="answerLove(false)">ไม่รัก 😢</button>
+            </div>
+            <p class="response-text" id="responseText"></p>
+        </div>
+    </div>
+
+    <!-- Page 3: Music -->
+    <div class="container hidden" id="page3">
+        <div class="music-page">
+            <h2>🎵 เพลงสำหรับที่รัก</h2>
+            <div class="music-visual"></div>
+            <br>
+            <a href="https://youtu.be/ZEPAcRh01Vo?si=gCh1dBXgzvTJ0cLa" target="_blank" class="youtube-btn">
+                <span>▶️</span>
+                <span>ฟังเพลงบน YouTube</span>
+            </a>
+            <br><br>
+            <button class="next-btn" onclick="goToPage4()">ไปต่อ ➡️</button>
+        </div>
+    </div>
+
+    <!-- Page 4: Love Letter (Final Page) -->
+    <div class="container hidden" id="page4">
+        <div class="letter-page">
+            <h2>💌 จดหมายรัก</h2>
+            
+            <div class="letter-envelope" id="envelope" onclick="openLetter()">
+                <div class="envelope-body">
+                    <p class="envelope-text">กดเพื่อเปิดซองจดหมาย 💝</p>
+                </div>
+            </div>
+            
+            <div class="letter-content" id="letterContent">
+                <p>ที่ผ่านมาหนูขอโทษนะคะ แต่หนูรักพี่มากๆ นะคะ 💕</p>
+                
+                <p>มีหลายๆ เหตุการณ์ที่ทำให้เค้าทำในสิ่งที่เธอต้องการไม่สำเร็จ แต่เค้าไม่เคยละเลยเธอเลยนะที่รัก หนูรักพี่มากๆ นะคะ</p>
+                
+                <p>เธอคือคนที่เค้ารักและสนใจมากๆๆ เค้าใส่ใจที่รักมาเสมอ ตั้งแต่วันแรกที่เจอยันวันนี้ ความใส่ใจเธออาจจะมองว่าเค้าไม่ใส่ใจ แต่เค้าใส่ใจเธอมากนะ</p>
+                
+                <p>อยากให้เชื่อใจกัน และเค้าขออวยพรให้ที่รักทำอะไรขอให้สำเร็จผ่านฉลุย ทั้งหน้าที่การงานและครอบครัว เค้าจะอยู่ตรงนี้เสมอ วันแรกเป็นไงวันนี้ยังเหมือนเดิมนะคะ</p>
+                
+                <p>รักพี่ดรีมมากนะคับ ถึงหนูจะเป็นเด็กดื้อไม่ค่อยฟัง แต่หนูก็ได้อะไรมากจากที่รักเยอะ ทุกวันนี้ดีขนาดนี้เพราะมีกำลังใจจากเธอ แม้ดูไม่สำคัญแต่มันเป็นแรงผลักดันที่ดีมากๆๆ</p>
+                
+                <p style="color: #e74c3c; font-weight: 600; font-style: italic; text-align: center; margin-top: 20px; font-size: 18px; line-height: 1.8;">
+                    "Yesterday I loved you so much,<br>
+                    today I love you even more than yesterday,<br>
+                    and tomorrow I will love you twice as much."<br><br>
+                    💕 รักนะคะ 💕
+                </p>
+                
+                <div class="final-message show" style="margin-top: 30px;">
+                    💕 รักที่รักมากๆ นะคะ 💕<br>
+                    <span style="font-size: 40px;">🐻‍❄️💝🌹</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Floating Elements
+        const floatingItems = ['🌹', '💖', '🌸', '💕', '🌺', '💗', '🌷', '💝', '🌻', '💓', '🌼', '💘'];
+        
+        function createFloatingItem() {
+            const container = document.getElementById('floatingContainer');
+            const item = document.createElement('div');
+            item.className = 'floating-item';
+            item.textContent = floatingItems[Math.floor(Math.random() * floatingItems.length)];
+            item.style.left = Math.random() * 100 + '%';
+            item.style.fontSize = (Math.random() * 20 + 20) + 'px';
+            item.style.animationDuration = (Math.random() * 4 + 6) + 's';
+            item.style.animationDelay = Math.random() * 2 + 's';
+            container.appendChild(item);
+            
+            setTimeout(() => item.remove(), 10000);
+        }
+        
+        setInterval(createFloatingItem, 800);
+        
+        for (let i = 0; i < 10; i++) {
+            setTimeout(createFloatingItem, i * 200);
+        }
+        
+        // Password Check
+        function checkPassword() {
+            const input = document.getElementById('passwordInput').value;
+            const errorMsg = document.getElementById('errorMsg');
+            
+            if (input === '260168') {
+                document.getElementById('page1').classList.add('hidden');
+                document.getElementById('page2').classList.remove('hidden');
+                createBurst();
+            } else {
+                errorMsg.style.display = 'block';
+                setTimeout(() => {
+                    errorMsg.style.display = 'none';
+                }, 3000);
+            }
+        }
+        
+        document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') checkPassword();
+        });
+        
+        // Bear Response
+        function answerLove(love) {
+            const bearImage = document.getElementById('bearImage');
+            const responseText = document.getElementById('responseText');
+            
+            if (love) {
+                bearImage.src = 'https://kimi-web-img.moonshot.cn/img/cdn.vectorstock.com/4dacab083c0b8d64fc22b6d37d96fa4559a4ca40.jpg';
+                responseText.textContent = 'รักนะที่รัก 💕 ไปต่อกันเลย!';
+                responseText.style.color = '#ff6b9d';
+                createBurst();
+                setTimeout(() => {
+                    document.getElementById('page2').classList.add('hidden');
+                    document.getElementById('page3').classList.remove('hidden');
+                }, 2500);
+            } else {
+                bearImage.src = 'https://kimi-web-img.moonshot.cn/img/c8.alamy.com/9d013bc9180b9e04c8dee074a89688e5ac19226d.jpg';
+                responseText.textContent = 'เธอไม่รักเค้าหรอคะ? 😭💔 กดรักสิคะ';
+                responseText.style.color = '#e74c3c';
+            }
+        }
+        
+        function goToPage4() {
+            document.getElementById('page3').classList.add('hidden');
+            document.getElementById('page4').classList.remove('hidden');
+        }
+        
+        // Letter Opening
+        function openLetter() {
+            const envelope = document.getElementById('envelope');
+            const letterContent = document.getElementById('letterContent');
+            
+            envelope.style.display = 'none';
+            letterContent.style.display = 'block';
+            createBurst();
+            
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => createSparkle(), i * 100);
+            }
+        }
+        
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.innerHTML = ['✨', '⭐', '💫'][Math.floor(Math.random() * 3)];
+            sparkle.style.left = Math.random() * window.innerWidth + 'px';
+            sparkle.style.top = Math.random() * window.innerHeight + 'px';
+            sparkle.style.fontSize = (Math.random() * 30 + 20) + 'px';
+            document.body.appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 1000);
+        }
+        
+        function createBurst() {
+            for (let i = 0; i < 15; i++) {
+                setTimeout(createSparkle, i * 50);
+            }
+        }
+    </script>
+</body>
+</html>
